@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     create_variables(primes_bnet, {"v4": "v4 | v2"})
     
-    # dodajanje spremenljivke z lambda funkcijo (nevem čist kako dela)
+    # dodajanje spremenljivke z lambda funkcijo 
     # create_variables(primes, {"v5": lambda v1, v2, v3: v1 + v2 + v3 == 1})
 
     # Izpis omrežja
@@ -110,21 +110,24 @@ if __name__ == "__main__":
     print("ciklicna sync")
     print(ciklicna_sync)
 
-    # random walk za represilator (ne dela neki)
+    # random walk za represilator
+    # za delovanje moras namestit dodatne knjiznice in programe (grinog)
 
-    # stanje_repre = find_attractor_state_by_randomwalk_and_ctl(primes_repre, "asynchronous")
+    stanje_repre = find_attractor_state_by_randomwalk_and_ctl(primes_repre, "asynchronous")
 
-    # print("Stanje represilatorja:")
-    # print(stanje_repre)
+    print("Stanje represilatorja:")
+    print(stanje_repre)
 
-    # attraktorji na nek drug more different way (isto še ne dela neki idk man)
+    # attraktorji 
+    # za delovanje moras namestit dodatne knjiznice in programe (grinog)
 
-    # atrktorji_repre = compute_attractors(primes_repre, update="asynchronous", fname_json="attractors.json")
+    atrktorji_repre = compute_attractors(primes_repre, update="asynchronous", fname_json="attractors.json")
 
-    # print("Attraktorji represilatorja:")
-    # print(atrktorji_repre["is_complete"])
-    # for x in atrktorji_repre["attractors"]:
-    #     print(x["is_steady"])
-    #     print(x["state"]["str"])
+    print("Attraktorji represilatorja:")
+    print(atrktorji_repre["is_complete"])
+    
+    for x in atrktorji_repre["attractors"]:
+        print(x["is_steady"])
+        print(x["state"]["str"])
 
     
