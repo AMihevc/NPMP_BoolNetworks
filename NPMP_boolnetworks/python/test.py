@@ -8,6 +8,7 @@ from pyboolnet.state_transition_graphs import *
 from pyboolnet.model_checking import *
 from pyboolnet.attractors import *
 from pyboolnet.interaction_graphs import *
+from pyboolnet.state_space import *   
 
 
 if __name__ == "__main__":
@@ -52,17 +53,37 @@ if __name__ == "__main__":
     print("Novo bnet omrežje:")
     print(primes2bnet(primes_bnet)) 
 
-    # ================= Izris grafov =================
+    # ================= Izris grafov prehodov stanj =================
 
     # Izris grafa za represilator
-    create_stg_image(primes_repre, update="asynchronous", fname_image="igraph.pdf")
-    create_stg_image(primes_repre, update="asynchronous", fname_image="igraph2.pdf", styles=["anonymous", "sccs"])
+    create_stg_image(primes_repre, update="asynchronous", fname_image="igraphrepre.pdf")
+    create_stg_image(primes_repre, update="asynchronous", fname_image="igraphrepre2.pdf", styles=["anonymous", "sccs"])
 
-    #TODO a so grafi drugačni če jih
+    #TODO a so grafi drugačni če jih poženeš z synchronus
 
     # Izris grafa za bnet
-    create_stg_image(primes_bnet, update="asynchronous", fname_image="igraph.pdf")
-    create_stg_image(primes_bnet, update="asynchronous", fname_image="igraph2.pdf", styles=["anonymous", "sccs"])
+    create_stg_image(primes_bnet, update="asynchronous", fname_image="igraphbnet.pdf")
+    create_stg_image(primes_bnet, update="asynchronous", fname_image="igraphbnet2.pdf", styles=["anonymous", "sccs"])
+
+    # ================= Izris grafov interakcij =================
+    # advances drawing
+    print("Izris advenced drawing")
+
+    igraph = primes2igraph(primes_repre)
+
+    # for x in igraph.nodes:
+    #     if "GF" in x:
+    #         igraph.nodes[x]["shape"] = "square"
+    #         igraph.nodes[x]["fillcolor"] = "lightblue"
+
+    igraph2image(igraph, "igraph3.pdf")
+
+    # local interaction graphs
+
+    state = random_state(primes_repre)
+    local_igraph = local_igraph_of_state(primes_repre, state)
+    add_style_interactionsigns(local_igraph)
+    igraph2image(local_igraph, "local_igraph.pdf")
 
 
     # ================= Računanje attraktorjev =================
@@ -105,3 +126,5 @@ if __name__ == "__main__":
     # for x in atrktorji_repre["attractors"]:
     #     print(x["is_steady"])
     #     print(x["state"]["str"])
+
+    
